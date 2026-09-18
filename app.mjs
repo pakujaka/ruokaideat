@@ -48,6 +48,11 @@ function escapeHtml(value = "") {
   return String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
 }
 
+function safeImage(value = "") {
+  try { const url = new URL(value); return url.protocol === "https:" ? url.toString() : ""; }
+  catch { return ""; }
+}
+
 function toast(message) {
   const el = $("#toast");
   el.textContent = message;
@@ -96,13 +101,15 @@ function renderWeek() {
     const offerMatch = state.focus !== "kaikki" && recipe.tags.includes(state.focus);
     const factor = portionFactor(state.adults, state.children);
     const scaled = factor === 1 ? "Perusmäärä" : `${String(factor).replace(".", ",")}× määrä`;
+    const image = safeImage(recipe.image);
     return `<article class="meal-card" style="--i:${index}">
       <div class="day"><strong>${SHORT_DAYS[index]}</strong><small>${DAYS[index]}</small></div>
-      <div class="meal-main"><div class="meal-visual" aria-hidden="true">${escapeHtml(recipe.emoji || "✦")}</div><div class="meal-copy"><h3>${escapeHtml(recipe.name)}</h3><div class="meta"><span>◷ ${Number(recipe.time) || 30} min</span><span>${scaled}</span><span class="source-pill">${escapeHtml(recipe.source || "Resepti")}</span></div></div></div>
+      <div class="meal-main"><div class="meal-visual" aria-hidden="true"><span>${escapeHtml(recipe.emoji || "✦")}</span>${image ? `<img src="${escapeHtml(image)}" alt="" loading="lazy" decoding="async">` : ""}</div><div class="meal-copy"><h3>${escapeHtml(recipe.name)}</h3><div class="meta"><span>◷ ${Number(recipe.time) || 30} min</span><span>${scaled}</span><span class="source-pill">${escapeHtml(recipe.source || "Resepti")}</span></div></div></div>
       ${offerMatch ? '<span class="offer-dot" title="Tarjouspainotus"></span>' : "<span></span>"}
       <div class="meal-actions"><button class="icon-button" data-details="${index}" aria-label="Näytä ainekset" title="Näytä ainekset">≡</button><button class="icon-button ${state.locked[index] ? "locked" : ""}" data-lock="${index}" aria-label="${state.locked[index] ? "Poista lukitus" : "Lukitse ruoka"}" title="Lukitse">${state.locked[index] ? "●" : "○"}</button></div>
     </article>`;
   }).join("");
+  $$(".meal-visual img", list).forEach((image) => image.addEventListener("error", () => { image.hidden = true; }));
   $$('[data-lock]', list).forEach((button) => button.addEventListener("click", () => {
     const index = Number(button.dataset.lock);
     state.locked[index] = !state.locked[index]; save(); renderWeek();

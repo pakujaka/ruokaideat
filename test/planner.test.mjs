@@ -21,6 +21,10 @@ test("weekly plan contains unique recipes and preserves locked days", () => {
   assert.ok(second.filter((recipe) => recipe.tags.includes("kana")).length >= 2);
 });
 
+test("built-in recipes provide real thumbnail images", () => {
+  assert.ok(RECIPES.every((recipe) => recipe.image?.startsWith("https://")));
+});
+
 test("shopping list aggregates matching ingredients and scales quantities", () => {
   const pastaRecipes = RECIPES.filter((recipe) => ["makaronilaatikko", "kanamakaronilaatikko"].includes(recipe.id));
   const list = buildShoppingList(pastaRecipes, 1);
