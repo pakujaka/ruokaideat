@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f2e8">
+<meta name="description" content="Helppo viikon ruokalistasuunnittelija K-Citymarket Kupittaan tarjousten tueksi.">
+<title>Ruokaviikko – arkiruokaideat</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<header class="site-header">
+  <a class="brand" href="#" aria-label="Ruokaviikko etusivu">
+    <span class="brand-mark">R</span>
+    <span><strong>Ruokaviikko</strong><small>Arki ilman arvontaa — paitsi hyvällä tavalla</small></span>
+  </a>
+  <a class="store-link" href="https://www.k-ruoka.fi/kauppa/k-citymarket-turku-kupittaa" target="_blank" rel="noopener">
+    <span class="store-dot"></span>K-Citymarket Kupittaa
+  </a>
+</header>
+
+<main>
+  <section class="intro" aria-labelledby="pageTitle">
+    <div>
+      <p class="eyebrow">VIIKON RUOAT KERRALLA KUNTOON</p>
+      <h1 id="pageTitle">Mitä tänään<br><em>syötäisiin?</em></h1>
+      <p class="lead">Arvo helppo ruokalista, painota tarjoustuotteita ja kokoa ostoslista yhdellä napilla.</p>
+    </div>
+    <div class="doodle" aria-hidden="true"><span>🥕</span><span>🍝</span><span>🥦</span></div>
+  </section>
+
+  <section class="planner-panel" aria-label="Ruokalistan asetukset">
+    <div class="family-block">
+      <div class="section-label"><span>01</span><div><strong>Ruokailijat</strong><small>Määrät skaalataan automaattisesti</small></div></div>
+      <div class="people-controls">
+        <div class="counter">
+          <span class="counter-icon">●</span><label>Aikuisia</label>
+          <button type="button" data-counter="adults" data-delta="-1" aria-label="Vähennä aikuisia">−</button>
+          <output id="adultsValue">2</output>
+          <button type="button" data-counter="adults" data-delta="1" aria-label="Lisää aikuisia">+</button>
+        </div>
+        <div class="counter child">
+          <span class="counter-icon">●</span><label>Lapsia</label>
+          <button type="button" data-counter="children" data-delta="-1" aria-label="Vähennä lapsia">−</button>
+          <output id="childrenValue">2</output>
+          <button type="button" data-counter="children" data-delta="1" aria-label="Lisää lapsia">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="focus-block">
+      <div class="section-label"><span>02</span><div><strong>Tarjouspainotus</strong><small>Valitse Kupittaan tarjouksiin sopiva raaka-aine</small></div></div>
+      <div class="chips" id="focusChips" role="radiogroup" aria-label="Tarjouspainotus">
+        <button class="chip active" data-focus="kaikki" role="radio" aria-checked="true">Kaikki</button>
+        <button class="chip" data-focus="kana" role="radio" aria-checked="false">Kana</button>
+        <button class="chip" data-focus="jauheliha" role="radio" aria-checked="false">Jauheliha</button>
+        <button class="chip" data-focus="kala" role="radio" aria-checked="false">Kala</button>
+        <button class="chip" data-focus="kasvis" role="radio" aria-checked="false">Kasvis</button>
+        <button class="chip" data-focus="makkara" role="radio" aria-checked="false">Makkara</button>
+      </div>
+      <a class="offers-link" href="https://www.k-ruoka.fi/kauppa/tarjoushaku" target="_blank" rel="noopener">Katso Kupittaan ajankohtaiset tarjoukset <span>↗</span></a>
+    </div>
+
+    <div class="generate-block">
+      <div class="days-toggle" aria-label="Suunnitelman pituus">
+        <button data-days="5">5 arkipäivää</button><button class="active" data-days="7">Koko viikko</button>
+      </div>
+      <button class="generate" id="generateBtn"><span class="dice">✦</span><span><strong>Arvo uusi ruokaviikko</strong><small>Lukitut ruoat säilyvät</small></span></button>
+    </div>
+  </section>
+
+  <nav class="view-tabs" aria-label="Näkymä">
+    <button class="active" data-view="week">Ruokalista <span id="mealCount">7</span></button>
+    <button data-view="shopping">Ostoslista <span id="itemCount">0</span></button>
+  </nav>
+
+  <section id="weekView" class="week-view" aria-live="polite">
+    <div class="week-heading"><div><p class="eyebrow">SUUNNITELMASI</p><h2>Ensi viikon ruoat</h2></div><p id="portionSummary">2 aikuista + 2 lasta · 4 annosta</p></div>
+    <div class="meal-list" id="mealList"></div>
+  </section>
+
+  <section id="shoppingView" class="shopping-view" hidden>
+    <div class="shopping-head">
+      <div><p class="eyebrow">VALMIS KAUPPAREISSULLE</p><h2>Ostoslista</h2><p id="shoppingSummary"></p></div>
+      <button id="clearChecks" class="text-button">Tyhjennä valinnat</button>
+    </div>
+    <div id="shoppingList" class="shopping-list"></div>
+    <a class="k-button" href="https://www.k-ruoka.fi/kauppa" target="_blank" rel="noopener">Avaa K-Ruoka-verkkokauppa <span>↗</span></a>
+  </section>
+
+  <aside class="note">
+    <strong>Testiversio</strong>
+    <p>Reseptit ohjaavat K-Ruokaan. Tarjouspainotus on käyttäjän valinta; sovellus ei vielä lue henkilökohtaisia Plussa-etuja tai kaupan hintoja automaattisesti.</p>
+  </aside>
+</main>
+
+<footer><span>Ruokaviikko</span><p>Ei virallinen K-Ruoka-palvelu. Kauppa ja hinnat tarkistetaan K-Ruoasta.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./app.mjs"></script>
+</body>
+</html>

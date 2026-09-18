@@ -1,0 +1,142 @@
+export const RECIPES = [
+  {
+    id: "makaronilaatikko", name: "Liha-makaronilaatikko", emoji: "🍝", time: 60,
+    tags: ["jauheliha", "lapsille", "uuniruoka"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/liha-makaronilaatikko",
+    ingredients: [["makaroni",400,"g"],["naudan jauheliha",400,"g"],["sipuli",1,"kpl"],["kananmuna",3,"kpl"],["maito",7,"dl"],["juustoraaste",150,"g"]]
+  },
+  {
+    id: "kanamakaronilaatikko", name: "Kanamakaronilaatikko", emoji: "🍗", time: 55,
+    tags: ["kana", "lapsille", "uuniruoka"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/kanamakaronilaatikko",
+    ingredients: [["makaroni",400,"g"],["kananjauheliha",400,"g"],["sipuli",1,"kpl"],["kananmuna",2,"kpl"],["maito",10,"dl"],["juustoraaste",150,"g"]]
+  },
+  {
+    id: "butter-chicken", name: "Helppo butter chicken", emoji: "🍛", time: 25,
+    tags: ["kana", "nopea", "riisi"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/helppo-butter-chicken",
+    ingredients: [["kanasuikale",400,"g"],["paseerattu tomaatti",250,"g"],["ruokakerma",2,"dl"],["riisi",3,"dl"],["turkkilainen jogurtti",200,"g"]]
+  },
+  {
+    id: "lohikeitto", name: "Kermainen lohikeitto", emoji: "🐟", time: 35,
+    tags: ["kala", "keitto", "gluteeniton"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/lohikeitto",
+    ingredients: [["lohifilee",500,"g"],["peruna",800,"g"],["porkkana",2,"kpl"],["purjo",1,"kpl"],["ruokakerma",2,"dl"],["tilli",1,"ruukku"]]
+  },
+  {
+    id: "uunilohi", name: "Uunilohi ja perunat", emoji: "🥔", time: 40,
+    tags: ["kala", "uuniruoka", "gluteeniton"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/uunilohi",
+    ingredients: [["lohifilee",600,"g"],["peruna",900,"g"],["sitruuna",1,"kpl"],["kermaviili",200,"g"],["salaatti",1,"ps"]]
+  },
+  {
+    id: "nakkikastike", name: "Nakkikastike ja muusi", emoji: "🥘", time: 30,
+    tags: ["makkara", "lapsille", "nopea"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/nakkikastike",
+    ingredients: [["nakki",500,"g"],["sipuli",1,"kpl"],["ruokakerma",2,"dl"],["peruna",1000,"g"],["maito",2,"dl"]]
+  },
+  {
+    id: "jauhelihakeitto", name: "Jauhelihakeitto", emoji: "🥣", time: 35,
+    tags: ["jauheliha", "keitto", "lapsille"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/omenainen-jauhelihakeitto",
+    ingredients: [["naudan jauheliha",400,"g"],["peruna",700,"g"],["keittojuurekset",500,"g"],["lihaliemikuutio",2,"kpl"],["ruisleipä",1,"pkt"]]
+  },
+  {
+    id: "lihapullat", name: "Lihapullat ruskeassa kastikkeessa", emoji: "🧆", time: 45,
+    tags: ["jauheliha", "lapsille", "peruna"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/lihapullat-ja-ruskea-kastike",
+    ingredients: [["naudan jauheliha",500,"g"],["kananmuna",1,"kpl"],["korppujauho",1,"dl"],["ruokakerma",2,"dl"],["peruna",1000,"g"]]
+  },
+  {
+    id: "tortillat", name: "Helpot kanatortillat", emoji: "🌮", time: 25,
+    tags: ["kana", "nopea", "lapsille"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/kana-caesarsalaatti",
+    ingredients: [["kanasuikale",400,"g"],["tortillalettu",8,"kpl"],["salaatti",1,"ps"],["tomaatti",4,"kpl"],["kurkku",1,"kpl"],["salsa",1,"prk"],["juustoraaste",150,"g"]]
+  },
+  {
+    id: "kukkakaalicurry", name: "Kukkakaalicurry", emoji: "🥦", time: 30,
+    tags: ["kasvis", "vegaaninen", "riisi"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/kukkakaalicurry",
+    ingredients: [["kukkakaali",800,"g"],["tomaattimurska",500,"g"],["kookosmaito",400,"ml"],["babypinaatti",65,"g"],["riisi",3,"dl"],["sipuli",1,"kpl"]]
+  },
+  {
+    id: "kasvissosekeitto", name: "Samettinen kasvissosekeitto", emoji: "🥕", time: 35,
+    tags: ["kasvis", "keitto", "edullinen"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/kasvissosekeitto",
+    ingredients: [["peruna",500,"g"],["porkkana",4,"kpl"],["bataatti",1,"kpl"],["sipuli",1,"kpl"],["ruokakerma",2,"dl"],["ruisleipä",1,"pkt"]]
+  },
+  {
+    id: "linssibolognese", name: "Linssibolognese", emoji: "🍅", time: 30,
+    tags: ["kasvis", "pasta", "edullinen"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/linssibolognese",
+    ingredients: [["pasta",400,"g"],["punainen linssi",2,"dl"],["tomaattimurska",500,"g"],["porkkana",2,"kpl"],["sipuli",1,"kpl"],["parmesaani",100,"g"]]
+  },
+  {
+    id: "makkarapelti", name: "Makkara-kasvispelti", emoji: "🌭", time: 40,
+    tags: ["makkara", "uuniruoka", "helppo"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/makkara-kasvispelti",
+    ingredients: [["lenkkimakkara",500,"g"],["peruna",800,"g"],["porkkana",3,"kpl"],["paprika",2,"kpl"],["punasipuli",2,"kpl"]]
+  },
+  {
+    id: "tonnikalapasta", name: "Kermainen tonnikalapasta", emoji: "🍜", time: 20,
+    tags: ["kala", "pasta", "nopea", "edullinen"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/tonnikalapasta",
+    ingredients: [["pasta",400,"g"],["tonnikala",2,"tlk"],["ruokakerma",2,"dl"],["tomaattimurska",400,"g"],["sipuli",1,"kpl"]]
+  },
+  {
+    id: "broilerikiusaus", name: "Broilerikiusaus", emoji: "🍲", time: 55,
+    tags: ["kana", "uuniruoka", "helppo"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/broilerikiusaus",
+    ingredients: [["kanasuikale",400,"g"],["peruna-sipulisekoitus",1000,"g"],["ruokakerma",5,"dl"],["juustoraaste",100,"g"]]
+  },
+  {
+    id: "pinaattiletut", name: "Pinaattiletut ja munavoi", emoji: "🥞", time: 30,
+    tags: ["kasvis", "lapsille", "edullinen"], source: "K-Ruoka",
+    url: "https://www.k-ruoka.fi/reseptit/pinaattiletut",
+    ingredients: [["pinaattilettu",600,"g"],["kananmuna",4,"kpl"],["raejuusto",200,"g"],["puolukkahillo",1,"prk"],["salaatti",1,"ps"]]
+  }
+];
+
+export function portionFactor(adults, children, baseServings = 4) {
+  const people = Math.max(1, Number(adults) + Number(children));
+  return Math.round((people / baseServings) * 100) / 100;
+}
+
+function shuffled(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+export function generateWeek({ days = 7, focus = "kaikki", locked = [] } = {}) {
+  const kept = locked.filter(Boolean);
+  const used = new Set(kept.map((recipe) => recipe.id));
+  const available = RECIPES.filter((recipe) => !used.has(recipe.id));
+  const focused = focus === "kaikki" ? [] : shuffled(available.filter((recipe) => recipe.tags.includes(focus)));
+  const others = shuffled(available.filter((recipe) => !focused.some((candidate) => candidate.id === recipe.id)));
+  const preferredCount = focus === "kaikki" ? 0 : Math.min(3, focused.length);
+  const queue = [...focused.slice(0, preferredCount), ...others, ...focused.slice(preferredCount)];
+  const result = [];
+  let cursor = 0;
+  for (let day = 0; day < days; day += 1) {
+    if (locked[day]) result.push(locked[day]);
+    else result.push(queue[cursor++]);
+  }
+  return result;
+}
+
+export function buildShoppingList(recipes, factor = 1) {
+  const grouped = new Map();
+  recipes.forEach((recipe) => recipe.ingredients.forEach(([name, amount, unit]) => {
+    const key = `${name}|${unit}`;
+    const current = grouped.get(key) || { name, amount: 0, unit };
+    current.amount += amount * factor;
+    grouped.set(key, current);
+  }));
+  return [...grouped.values()]
+    .map((item) => ({ ...item, amount: Math.round(item.amount * 10) / 10 }))
+    .sort((a, b) => a.name.localeCompare(b.name, "fi"));
+}
