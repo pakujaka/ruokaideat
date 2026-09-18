@@ -111,10 +111,10 @@ function shuffled(items) {
   return copy;
 }
 
-export function generateWeek({ days = 7, focus = "kaikki", locked = [] } = {}) {
+export function generateWeek({ days = 7, focus = "kaikki", locked = [], recipes = RECIPES } = {}) {
   const kept = locked.filter(Boolean);
   const used = new Set(kept.map((recipe) => recipe.id));
-  const available = RECIPES.filter((recipe) => !used.has(recipe.id));
+  const available = recipes.filter((recipe) => !used.has(recipe.id));
   const focused = focus === "kaikki" ? [] : shuffled(available.filter((recipe) => recipe.tags.includes(focus)));
   const others = shuffled(available.filter((recipe) => !focused.some((candidate) => candidate.id === recipe.id)));
   const preferredCount = focus === "kaikki" ? 0 : Math.min(3, focused.length);
@@ -130,13 +130,21 @@ export function generateWeek({ days = 7, focus = "kaikki", locked = [] } = {}) {
 
 export function buildShoppingList(recipes, factor = 1) {
   const grouped = new Map();
-  recipes.forEach((recipe) => recipe.ingredients.forEach(([name, amount, unit]) => {
-    const key = `${name}|${unit}`;
-    const current = grouped.get(key) || { name, amount: 0, unit };
-    current.amount += amount * factor;
+  recipes.forEach((recipe) => recipe.ingredients.forEach((ingredient) => {
+    const [name, amount, unit] = Array.isArray(ingredient)
+      ? ingredient
+      : [ingredient.name, ingredient.amount, ingredient.unit];
+    const raw = Array.isArray(ingredient) ? null : ingredient.raw;
+    const key = `${name}|${unit || ""}`;
+    const current = grouped.get(key) || { name, amount: 0, unit: unit || "", raw: null };
+    if (Number.isFinite(amount)) current.amount += amount * factor;
+    else current.raw = raw || name;
     grouped.set(key, current);
   }));
   return [...grouped.values()]
-    .map((item) => ({ ...item, amount: Math.round(item.amount * 10) / 10 }))
+    .map((item) => ({
+      ...item,
+      amount: item.raw ? null : Math.round(item.amount * 10) / 10,
+    }))
     .sort((a, b) => a.name.localeCompare(b.name, "fi"));
 }

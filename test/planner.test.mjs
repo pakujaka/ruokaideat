@@ -27,4 +27,15 @@ test("shopping list aggregates matching ingredients and scales quantities", () =
   const makaroni = list.find((item) => item.name === "makaroni");
   assert.equal(makaroni.amount, 800);
   assert.equal(makaroni.unit, "g");
+  assert.equal(makaroni.raw, null);
+});
+
+test("shopping list accepts imported ingredient objects", () => {
+  const imported = [{ ingredients: [
+    { name: "lohifileetä", amount: 400, unit: "g", raw: "400 g lohifileetä" },
+    { name: "tuoretta tilliä", amount: null, unit: "", raw: "tuoretta tilliä" },
+  ] }];
+  const list = buildShoppingList(imported, 1.5);
+  assert.deepEqual(list.find((item) => item.name === "lohifileetä"), { name: "lohifileetä", amount: 600, unit: "g", raw: null });
+  assert.equal(list.find((item) => item.name === "tuoretta tilliä").raw, "tuoretta tilliä");
 });

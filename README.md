@@ -8,6 +8,8 @@ Mobiiliystävällinen viikon ruokalistasuunnittelija. Sovellus arpoo 5 tai 7 ark
 - erilliset henkilömäärälaskurit
 - 5 päivän tai 7 päivän suunnitelma
 - tarjouspainotus: kana, jauheliha, kala, kasvis tai makkara
+- reseptihaku K-Ruoasta ja kotimaisilta reseptisivuilta
+- reseptin ainesosien tuonti suoraan ostoslistaa varten
 - yksittäisten päivien lukitus ennen uutta arvontaa
 - automaattisesti yhdistetty ja skaalattu ostoslista
 - linkit K-Ruoka-resepteihin ja Kupittaan tarjouksiin
