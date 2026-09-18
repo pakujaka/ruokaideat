@@ -1,4 +1,5 @@
 import { RECIPES, portionFactor, generateWeek, buildShoppingList } from "./planner.mjs";
+import { readerImport, readerSearch } from "./recipe-reader.mjs";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -181,10 +182,16 @@ async function importResult(index, button) {
   if (!result) return;
   button.disabled = true; button.classList.add("loading"); button.textContent = "Haetaan";
   try {
-    const response = await fetch("./api/import", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: result.url }) });
-    const payload = await response.json();
-    if (!response.ok) throw new Error(payload.error || "Aineksia ei voitu hakea.");
-    showRecipe(payload.recipe, true);
+    let recipe;
+    try {
+      const response = await fetch("./api/import", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: result.url }) });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error);
+      recipe = payload.recipe;
+    } catch {
+      recipe = await readerImport(result.url);
+    }
+    showRecipe(recipe, true);
   } catch (error) { toast(error.message || "Aineksia ei voitu hakea"); }
   finally { button.disabled = false; button.classList.remove("loading"); button.textContent = "Hae ainekset"; }
 }
@@ -199,10 +206,14 @@ async function search(query) {
   const status = $("#searchStatus");
   status.classList.add("loading"); status.textContent = "Haetaan reseptejä"; state.searchResults = []; renderSearchResults();
   try {
-    const response = await fetch(`./api/search?q=${encodeURIComponent(query)}&source=${encodeURIComponent(state.searchSource)}`);
-    const payload = await response.json();
-    if (!response.ok) throw new Error(payload.error || "Haku epäonnistui.");
-    state.searchResults = payload.results || [];
+    try {
+      const response = await fetch(`./api/search?q=${encodeURIComponent(query)}&source=${encodeURIComponent(state.searchSource)}`);
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error);
+      state.searchResults = payload.results || [];
+    } catch {
+      state.searchResults = await readerSearch(query, state.searchSource);
+    }
     status.textContent = state.searchResults.length ? `${state.searchResults.length} reseptiä löytyi` : "Reseptejä ei löytynyt. Kokeile lyhyempää hakusanaa.";
     renderSearchResults();
   } catch (error) { status.textContent = error.message || "Haku epäonnistui. Yritä hetken kuluttua uudelleen."; }
