@@ -47,7 +47,7 @@ function recipeNode(value) {
   if (typeof value !== "object") return null;
   const types = Array.isArray(value["@type"]) ? value["@type"] : [value["@type"]];
   if (types.some((type) => String(type).toLowerCase() === "recipe")) return value;
-  return recipeNode(value["@graph"]);
+  return recipeNode(value["@graph"]) || recipeNode(value.mainEntity) || recipeNode(value.subjectOf);
 }
 
 function duration(value = "") {
@@ -106,7 +106,7 @@ export async function readerSearch(query, source = "kruoka") {
 export async function readerImport(urlValue) {
   const url = new URL(urlValue);
   if (url.protocol !== "https:" || !sourceFor(url.toString())) throw new Error("Reseptilähde ei ole tuettu.");
-  const response = await fetch(`https://r.jina.ai/http://${url.host}${url.pathname}${url.search}`, { headers: { "X-Return-Format": "html" } });
+  const response = await fetch(`https://r.jina.ai/https://${url.host}${url.pathname}${url.search}`, { headers: { "X-Return-Format": "html" } });
   if (!response.ok) throw new Error("Reseptisivua ei voitu lukea.");
   return extractReaderRecipe(await response.text(), url.toString());
 }

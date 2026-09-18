@@ -11,7 +11,7 @@ test("parses allowed recipe results from Jina DuckDuckGo markdown", () => {
 });
 
 test("extracts structured ingredients from Jina HTML", () => {
-  const html = `<script type="application/ld+json">{"@type":"Recipe","name":"Lohikeitto","recipeYield":"4 annosta","totalTime":"PT35M","recipeIngredient":["400 g lohta","2 dl kermaa"]}</script>`;
+  const html = `<script type="application/ld+json">{"@type":"WebPage","mainEntity":{"@type":"Recipe","name":"Lohikeitto","recipeYield":"4 annosta","totalTime":"PT35M","recipeIngredient":["400 g lohta","2 dl kermaa"]}}</script>`;
   const recipe = extractReaderRecipe(html, "https://www.k-ruoka.fi/reseptit/lohikeitto");
   assert.equal(recipe.name, "Lohikeitto");
   assert.equal(recipe.ingredients.length, 2);
